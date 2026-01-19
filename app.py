@@ -10,7 +10,7 @@ def home():
 # ROTA 1: Sua calculadora atual
 @app.route('/frames', methods=['POST'])
 def calcular_frames():
-    frame_rate = int(request.form.get('framerate', 0))
+    frame_rate = int(request.form.get('framerate', 25))
     total_frames = int(request.form.get('totalframes', 0))
 
     #calculo
@@ -26,7 +26,7 @@ def calcular_frames():
 # ROTA 2: Frames para milissegundos
 @app.route('/ms', methods=['POST'])
 def calcular_ms():
-    fps = int(request.form.get('fps_ms', 0))
+    fps = int(request.form.get('fps_ms', 25))
     frames = int(request.form.get('frames_ms', 0))
 
     #calculo
@@ -38,7 +38,7 @@ def calcular_ms():
 # ROTA 3: TEMPO PARA FRAMES
 @app.route('/time', methods=['POST'])
 def calcular_time():
-    fps2 = int(request.form.get('fps2') or 0)
+    fps2 = int(request.form.get('fps2') or 25)
     horas = int(request.form.get('horas') or 0)
     minutos = int(request.form.get('minutos') or 0)
     segundos = int(request.form.get('segundos') or 0)
