@@ -13,7 +13,7 @@ def calcular_frames():
     frame_rate = int(request.form.get('framerate', 0))
     total_frames = int(request.form.get('totalframes', 0))
 
-    # Sua lógica original
+    #calculo
     horas = total_frames // (frame_rate * 3600)
     minutos = (total_frames % (frame_rate * 3600)) // (frame_rate * 60)
     segundos = (total_frames % (frame_rate * 60)) // frame_rate
@@ -23,19 +23,19 @@ def calcular_frames():
     return render_template('index.html', res_frames=resultado)
 
 
-# ROTA 2: Nova calculadora (Exemplo: Frames para milissegundos)
+# ROTA 2: Frames para milissegundos
 @app.route('/ms', methods=['POST'])
 def calcular_ms():
     fps = int(request.form.get('fps_ms', 0))
     frames = int(request.form.get('frames_ms', 0))
 
-    # Lógica diferente: Cálculo de milissegundos
+    #calculo
     ms = (frames / fps) * 1000 if fps > 0 else 0
 
     resultado = f"{ms:.2f} ms"
     return render_template('index.html', res_ms=resultado)
 
-# ROTA 3: Nova calculadora (Exemplo: TEMPO PARA FRAMES)
+# ROTA 3: TEMPO PARA FRAMES
 @app.route('/time', methods=['POST'])
 def calcular_time():
     fps2 = int(request.form.get('fps2') or 0)
@@ -44,7 +44,7 @@ def calcular_time():
     segundos = int(request.form.get('segundos') or 0)
     frames2 = int(request.form.get('frames2') or 0)
 
-    # Lógica diferente
+    # calculo
     conv_horas = (fps2 * 60) * 60
     conv_minu_frame = fps2 * 60
     conv_seg_frame = fps2
