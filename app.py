@@ -7,11 +7,11 @@ def home():
     return render_template('index.html')
 
 
-# ROTA 1: Sua calculadora atual
+# ROTA 1: Frames para tempo
 @app.route('/frames', methods=['POST'])
 def calcular_frames():
-    frame_rate = int(request.form.get('framerate' or 25))
-    total_frames = int(request.form.get('totalframes', 0))
+    frame_rate = int(request.form.get('framerate') or 25)
+    total_frames = int(request.form.get('totalframes') or 0)
 
     #calculo
     horas = total_frames // (frame_rate * 3600)
@@ -26,8 +26,8 @@ def calcular_frames():
 # ROTA 2: Frames para milissegundos
 @app.route('/ms', methods=['POST'])
 def calcular_ms():
-    fps = int(request.form.get('fps_ms' or 25))
-    frames = int(request.form.get('frames_ms', 0))
+    fps = int(request.form.get('fps_ms') or 25)
+    frames = int(request.form.get('frames_ms') or 0)
 
     #calculo
     ms = (frames / fps) * 1000 if fps > 0 else 0
@@ -57,7 +57,7 @@ def calcular_time():
     segundos_frames = segundos * conv_seg_frame
     total = round(horas_frames + minutos_frames + segundos_frames + frames2)
 
-    resultado = f'O teu vídeo tem {total} frames.'
+    resultado = f'O teu vídeo tem {total} frames. (Com base em {fps2} FPS.'
     return render_template('index.html', res_time=resultado)
 
 
